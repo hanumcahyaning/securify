@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sruput Data</Data></title>
+  <style>
+    :root {
+      --red-main: #c0392b;
+      --red-light: #e74c3c;
+      --gray-dark: #333;
+      --gray-light: #f4f4f9;
+      --white: #ffffff;
+      --radius: 8px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--gray-light);
+      color: var(--gray-dark);
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      color: var(--red-main);
+      margin-bottom: 10px;
+    }
+
+    form {
+      background: var(--white);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: inline-block;
+    }
+
+    input {
+      width: 250px;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: var(--radius);
+      font-size: 14px;
+    }
+
+    input:focus {
+      border-color: var(--red-light);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
+    }
+
+    button {
+      background: var(--red-main);
+      color: var(--white);
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: var(--red-light);
+    }
+
+    .result-table {
+      width: 100%;
+      max-width: 700px;
+      margin: 30px auto;
+      border-collapse: collapse;
+      font-size: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .result-table th, .result-table td {
+      border: 1px solid #ddd;
+      padding: 12px 16px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .result-table th {
+      background: var(--red-main);
+      color: var(--white);
+    }
+
+    .low::before { content: "✅ "; }
+    .medium::before { content: "⚠️ "; }
+    .high::before { content: "🔥 "; }
+    .invalid::before { content: "❌ "; }
+
+    .low { color: #2ecc71; font-weight: bold; }
+    .medium { color: #f39c12; font-weight: bold; }
+    .high { color: #e74c3c; font-weight: bold; }
+    .invalid { color: #7f8c8d; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>SECURIFY</h1>
+  <p>Know Your Data. Secure Your Privacy.</p>
+
+  <form id="checkForm">
+    <input type="text" id="phone" placeholder="Masukkan No HP"><br>
+    <input type="email" id="email" placeholder="Masukkan Email"><br>
+    <input type="text" id="ip" placeholder="Masukkan IP Address"><br>
+    <button type="submit">Periksa Risiko</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById("checkForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const phone = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const ip = document.getElementById("ip").value.trim();
+
+      const phoneRegex = /^08(11|12|13|14|15|16|17|18|19|21|22|23|31|32|33|38|51|52|53|55|56|57|58|59|77|78|81|82|83|85|86|87|88|89)\d{5,9}$/;
+      const emailRegex = /^[A-Za-z0-9._%+-]+@(?!test\.com$|abc\.com$)[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+      const ipRegex = /^((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$/;
+
+      let rows = [];
+
+      function assess(type, value, valid, reasons, advice) {
+        let level = "Rendah", css = "low";
+        if (!valid) {
+          level = "Tidak valid"; css = "invalid";
+        } else if (reasons.length >= 3) {
+          level = "Tinggi"; css = "high";
+        } else if (reasons.length === 2) {
+          level = "Sedang"; css = "medium";
+        }
+
+        rows.push(`
+          <tr>
+            <td>${type}</td>
+            <td class="${css}">${level}</td>
+            <td><ul><li>${reasons.join("</li><li>")}</li></ul></td>
+            <td>${advice}</td>
+          </tr>
+        `);
+      }
+
+      if (phone) {
+        const valid = phoneRegex.test(phone);
+        const reasons = [];
+        if (valid) {
+          reasons.push("Nomor HP sesuai format operator resmi.");
+          if (phone.length >= 12) reasons.push("Nomor panjang biasanya digunakan.");
+        }
+        const advice = valid
+          ? "Gunakan nomor ini hanya untuk layanan terpercaya dan hindari publikasi terbuka."
+          : "Periksa kembali format nomor HP Anda.";
+        assess("Nomor HP", phone, valid, reasons, advice);
+      }
+
+      if (email) {
+        const valid = emailRegex.test(email);
+        const reasons = [];
+        if (valid) {
+          reasons.push("Email valid dengan domain umum.");
+          if (/@gmail\.com$/.test(email)) reasons.push("Email gratisan (gmail) sering jadi target kebocoran.");
+        }
+        const advice = valid
+          ? "Aktifkan autentikasi dua faktor dan hindari penggunaan email utama di semua layanan."
+          : "Periksa kembali format email Anda.";
+        assess("Email", email, valid, reasons, advice);
+      }
+
+      if (ip) {
+        const valid = ipRegex.test(ip);
+        const reasons = [];
+        if (valid) {
+          reasons.push("IP valid menunjukkan perangkat nyata.");
+          if (!/^192\.168\./.test(ip)) reasons.push("IP publik lebih mudah dilacak.");
+        }
+        const advice = valid
+          ? "Gunakan VPN dan hindari koneksi publik untuk menjaga privasi IP Anda."
+          : "Periksa kembali format IP Address Anda.";
+        assess("IP Address", ip, valid, reasons, advice);
+      }
+
+      document.getElementById("result").innerHTML = `
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th>Jenis Data</th>
+              <th>Risiko</th>
+              <th>Alasan</th>
+              <th>Pencegahan</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.join("")}
+          </tbody>
+        </table>
+      `;
+    });
+  </script>
+</body>
+</html>
