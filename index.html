@@ -1,2307 +1,1151 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SECURIFY | Privacy Risk Checker</title>
+    <title>My Digital Journey - Portofolio</title>
 
-    <style>
+    <!-- Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="assets/css/style.css">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --bg: #080b12;
-            --card: #121722;
-            --card-light: #171d2a;
-            --input: #0d111a;
-
-            --red: #e53935;
-            --red-light: #ff5b57;
-
-            --white: #ffffff;
-            --text: #f5f7fa;
-            --muted: #9ca3af;
-
-            --border: rgba(255,255,255,0.08);
-
-            --green: #35d07f;
-            --yellow: #f5b942;
-            --orange: #ff8a3d;
-            --gray: #8b949e;
-
-            --radius: 18px;
-        }
-
-
-        body {
-
-            min-height: 100vh;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            color: var(--text);
-
-            background:
-
-                radial-gradient(
-                    circle at 15% 10%,
-                    rgba(229,57,53,0.16),
-                    transparent 30%
-                ),
-
-                radial-gradient(
-                    circle at 85% 80%,
-                    rgba(229,57,53,0.08),
-                    transparent 30%
-                ),
-
-                var(--bg);
-
-            padding:
-                30px 20px 60px;
-
-        }
-
-
-        /* =========================
-           NAVBAR
-        ========================= */
-
-        .navbar {
-
-            max-width: 1100px;
-
-            margin:
-                0 auto 65px;
-
-            display: flex;
-
-            justify-content:
-                space-between;
-
-            align-items:
-                center;
-
-        }
-
-
-        .logo {
-
-            display: flex;
-
-            align-items:
-                center;
-
-            gap: 10px;
-
-            font-size: 20px;
-
-            font-weight: 800;
-
-            letter-spacing: 1px;
-
-        }
-
-
-        .logo-icon {
-
-            width: 40px;
-            height: 40px;
-
-            display: flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            border-radius:
-                12px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--red-light),
-                    #a91d1a
-                );
-
-            box-shadow:
-                0 8px 25px
-                rgba(229,57,53,0.3);
-
-        }
-
-
-        .status {
-
-            display: flex;
-
-            align-items:
-                center;
-
-            gap: 8px;
-
-            color: var(--muted);
-
-            font-size: 12px;
-
-        }
-
-
-        .status-dot {
-
-            width: 8px;
-            height: 8px;
-
-            border-radius:
-                50%;
-
-            background:
-                var(--green);
-
-            box-shadow:
-                0 0 10px
-                var(--green);
-
-        }
-
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-
-            max-width: 850px;
-
-            margin:
-                auto;
-
-            text-align:
-                center;
-
-        }
-
-
-        .badge {
-
-            display:
-                inline-flex;
-
-            padding:
-                8px 14px;
-
-            border-radius:
-                50px;
-
-            background:
-                rgba(229,57,53,0.08);
-
-            border:
-                1px solid
-                rgba(229,57,53,0.25);
-
-            color:
-                #ff7773;
-
-            font-size:
-                11px;
-
-            font-weight:
-                700;
-
-            margin-bottom:
-                20px;
-
-        }
-
-
-        .hero h1 {
-
-            font-size:
-                clamp(45px, 8vw, 75px);
-
-            font-weight:
-                800;
-
-            letter-spacing:
-                -4px;
-
-            margin-bottom:
-                18px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #ffffff 25%,
-                    #ff5b57
-                );
-
-            -webkit-background-clip:
-                text;
-
-            -webkit-text-fill-color:
-                transparent;
-
-        }
-
-
-        .hero p {
-
-            color:
-                var(--muted);
-
-            font-size:
-                15px;
-
-            line-height:
-                1.7;
-
-            margin-bottom:
-                45px;
-
-        }
-
-
-        /* =========================
-           CHECKER CARD
-        ========================= */
-
-        .checker-card {
-
-            width:
-                100%;
-
-            max-width:
-                760px;
-
-            margin:
-                auto;
-
-            padding:
-                32px;
-
-            background:
-                rgba(18,23,34,0.92);
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius:
-                var(--radius);
-
-            box-shadow:
-                0 25px 60px
-                rgba(0,0,0,0.35);
-
-        }
-
-
-        .card-header {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            gap:
-                12px;
-
-            margin-bottom:
-                28px;
-
-        }
-
-
-        .card-icon {
-
-            width:
-                44px;
-
-            height:
-                44px;
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            border-radius:
-                12px;
-
-            background:
-                rgba(229,57,53,0.12);
-
-            font-size:
-                20px;
-
-        }
-
-
-        .card-header h2 {
-
-            font-size:
-                17px;
-
-        }
-
-
-        .card-header p {
-
-            color:
-                var(--muted);
-
-            font-size:
-                12px;
-
-            margin-top:
-                4px;
-
-        }
-
-
-        /* =========================
-           INPUT
-        ========================= */
-
-        .input-group {
-
-            margin-bottom:
-                18px;
-
-        }
-
-
-        label {
-
-            display:
-                block;
-
-            margin-bottom:
-                8px;
-
-            font-size:
-                12px;
-
-            font-weight:
-                600;
-
-            color:
-                #d9dde4;
-
-        }
-
-
-        .input-wrapper {
-
-            position:
-                relative;
-
-        }
-
-
-        .input-icon {
-
-            position:
-                absolute;
-
-            left:
-                15px;
-
-            top:
-                50%;
-
-            transform:
-                translateY(-50%);
-
-            color:
-                #737b89;
-
-        }
-
-
-        input {
-
-            width:
-                100%;
-
-            height:
-                52px;
-
-            padding:
-                0 15px 0 44px;
-
-            border-radius:
-                12px;
-
-            border:
-                1px solid
-                var(--border);
-
-            background:
-                var(--input);
-
-            color:
-                white;
-
-            outline:
-                none;
-
-            transition:
-                0.25s;
-
-        }
-
-
-        input::placeholder {
-
-            color:
-                #555d6a;
-
-        }
-
-
-        input:focus {
-
-            border-color:
-                var(--red);
-
-            box-shadow:
-                0 0 0 3px
-                rgba(229,57,53,0.12);
-
-        }
-
-
-        /* =========================
-           BUTTON
-        ========================= */
-
-        button {
-
-            width:
-                100%;
-
-            height:
-                52px;
-
-            margin-top:
-                8px;
-
-            border:
-                none;
-
-            border-radius:
-                12px;
-
-            color:
-                white;
-
-            font-size:
-                13px;
-
-            font-weight:
-                700;
-
-            cursor:
-                pointer;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--red-light),
-                    #a91d1a
-                );
-
-            box-shadow:
-                0 10px 25px
-                rgba(229,57,53,0.25);
-
-            transition:
-                0.25s;
-
-        }
-
-
-        button:hover {
-
-            transform:
-                translateY(-2px);
-
-            box-shadow:
-                0 15px 30px
-                rgba(229,57,53,0.35);
-
-        }
-
-
-        /* =========================
-           RESULT
-        ========================= */
-
-        #result {
-
-            max-width:
-                1100px;
-
-            margin:
-                45px auto 0;
-
-        }
-
-
-        .result-header {
-
-            text-align:
-                center;
-
-            margin-bottom:
-                25px;
-
-        }
-
-
-        .result-header h2 {
-
-            font-size:
-                24px;
-
-            margin-bottom:
-                7px;
-
-        }
-
-
-        .result-header p {
-
-            color:
-                var(--muted);
-
-            font-size:
-                12px;
-
-        }
-
-
-        /* =========================
-           RESULT CARDS
-        ========================= */
-
-        .result-grid {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(300px, 1fr)
-                );
-
-            gap:
-                20px;
-
-        }
-
-
-        .result-card {
-
-            background:
-                rgba(18,23,34,0.95);
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius:
-                var(--radius);
-
-            padding:
-                25px;
-
-            box-shadow:
-                0 20px 50px
-                rgba(0,0,0,0.25);
-
-        }
-
-
-        .result-card-header {
-
-            display:
-                flex;
-
-            justify-content:
-                space-between;
-
-            align-items:
-                center;
-
-            margin-bottom:
-                20px;
-
-        }
-
-
-        .data-name {
-
-            font-size:
-                15px;
-
-            font-weight:
-                700;
-
-        }
-
-
-        /* =========================
-           SCORE
-        ========================= */
-
-        .score-box {
-
-            text-align:
-                center;
-
-            padding:
-                18px;
-
-            margin-bottom:
-                20px;
-
-            border-radius:
-                15px;
-
-            background:
-                var(--card-light);
-
-        }
-
-
-        .score-number {
-
-            font-size:
-                42px;
-
-            font-weight:
-                800;
-
-            margin-bottom:
-                5px;
-
-        }
-
-
-        .score-label {
-
-            color:
-                var(--muted);
-
-            font-size:
-                11px;
-
-        }
-
-
-        /* =========================
-           RISK BADGE
-        ========================= */
-
-        .risk {
-
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            gap:
-                5px;
-
-            padding:
-                6px 10px;
-
-            border-radius:
-                50px;
-
-            font-size:
-                10px;
-
-            font-weight:
-                700;
-
-        }
-
-
-        .low {
-
-            color:
-                var(--green);
-
-            background:
-                rgba(53,208,127,0.1);
-
-        }
-
-
-        .medium {
-
-            color:
-                var(--yellow);
-
-            background:
-                rgba(245,185,66,0.1);
-
-        }
-
-
-        .high {
-
-            color:
-                var(--orange);
-
-            background:
-                rgba(255,138,61,0.1);
-
-        }
-
-
-        .critical {
-
-            color:
-                var(--red-light);
-
-            background:
-                rgba(229,57,53,0.12);
-
-        }
-
-
-        .invalid {
-
-            color:
-                var(--gray);
-
-            background:
-                rgba(139,148,158,0.1);
-
-        }
-
-
-        /* =========================
-           ANALYSIS
-        ========================= */
-
-        .analysis-title {
-
-            font-size:
-                11px;
-
-            text-transform:
-                uppercase;
-
-            letter-spacing:
-                0.6px;
-
-            color:
-                #777f8d;
-
-            margin-bottom:
-                10px;
-
-        }
-
-
-        .analysis-list {
-
-            list-style:
-                none;
-
-            margin-bottom:
-                20px;
-
-        }
-
-
-        .analysis-list li {
-
-            padding:
-                8px 0;
-
-            border-bottom:
-                1px solid
-                rgba(255,255,255,0.05);
-
-            color:
-                #c9ced6;
-
-            font-size:
-                12px;
-
-            line-height:
-                1.5;
-
-        }
-
-
-        .analysis-list li:last-child {
-
-            border-bottom:
-                none;
-
-        }
-
-
-        /* =========================
-           RECOMMENDATION
-        ========================= */
-
-        .recommendation {
-
-            padding:
-                15px;
-
-            border-radius:
-                12px;
-
-            background:
-                rgba(229,57,53,0.06);
-
-            border:
-                1px solid
-                rgba(229,57,53,0.12);
-
-        }
-
-
-        .recommendation strong {
-
-            display:
-                block;
-
-            font-size:
-                11px;
-
-            margin-bottom:
-                6px;
-
-        }
-
-
-        .recommendation p {
-
-            color:
-                var(--muted);
-
-            font-size:
-                11px;
-
-            line-height:
-                1.6;
-
-        }
-
-
-        /* =========================
-           INFO
-        ========================= */
-
-        .info-box {
-
-            margin-top:
-                25px;
-
-            padding:
-                20px;
-
-            border-radius:
-                15px;
-
-            background:
-                rgba(255,255,255,0.025);
-
-            border:
-                1px solid
-                var(--border);
-
-            color:
-                var(--muted);
-
-            font-size:
-                11px;
-
-            line-height:
-                1.7;
-
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-
-            max-width:
-                1100px;
-
-            margin:
-                70px auto 0;
-
-            padding-top:
-                25px;
-
-            border-top:
-                1px solid
-                var(--border);
-
-            text-align:
-                center;
-
-            color:
-                #5f6774;
-
-            font-size:
-                11px;
-
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 600px) {
-
-            body {
-
-                padding:
-                    20px 15px 40px;
-
-            }
-
-
-            .navbar {
-
-                margin-bottom:
-                    45px;
-
-            }
-
-
-            .status {
-
-                display:
-                    none;
-
-            }
-
-
-            .checker-card {
-
-                padding:
-                    22px;
-
-            }
-
-
-            .hero h1 {
-
-                letter-spacing:
-                    -2px;
-
-            }
-
-
-            .result-grid {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-        }
-
-    </style>
-
+   
 </head>
 
 
 <body>
 
+    <!-- Background decoration -->
+    <div class="background-dots"></div>
+    <div class="floating-shape shape-one"></div>
+    <div class="floating-shape shape-two"></div>
+    <div class="floating-shape shape-three"></div>
 
-    <!-- =========================
-         NAVBAR
-    ========================= -->
 
-    <nav class="navbar">
+    <main class="scrapbook-board">
 
-        <div class="logo">
 
-            <div class="logo-icon">
-                🛡️
-            </div>
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
 
-            SECURIFY
+        <header>
 
-        </div>
+            <a href="#beranda"
+               class="logo"
+               onclick="switchPage('beranda', this)">
+                🎫 My<span>.</span>DigitalJourney
+            </a>
 
+            <nav>
+                <ul id="nav-menu">
 
-        <div class="status">
+                    <li>
+                        <a href="#beranda"
+                           class="active"
+                           onclick="switchPage('beranda', this)">
+                            🏠 Beranda
+                        </a>
+                    </li>
 
-            <span class="status-dot"></span>
+                    <li>
+                        <a href="#tentang"
+                           onclick="switchPage('tentang', this)">
+                            👤 Tentang
+                        </a>
+                    </li>
 
-            Privacy Checker Online
+                    <li>
+                        <a href="#jaringan"
+                           onclick="switchPage('jaringan', this)">
+                            🌐 Jaringan
+                        </a>
+                    </li>
 
-        </div>
+                    <li>
+                        <a href="#iot-arduino"
+                           onclick="switchPage('iot-arduino', this)">
+                            🤖 IoT
+                        </a>
+                    </li>
 
-    </nav>
+                    <li>
+                        <a href="#karya-proyek"
+                           onclick="switchPage('karya-proyek', this)">
+                            💡 Proyek
+                        </a>
+                    </li>
 
+                    <li>
+                        <a href="#kontak"
+                           onclick="switchPage('kontak', this)">
+                            📬 Kontak
+                        </a>
+                    </li>
 
+                </ul>
+            </nav>
 
-    <!-- =========================
-         HERO
-    ========================= -->
+        </header>
 
-    <section class="hero">
 
-        <div class="badge">
 
-            🔐 ADVANCED DATA PRIVACY ANALYSIS
+        <!-- =====================================================
+             BERANDA
+        ====================================================== -->
 
-        </div>
+        <section id="beranda" class="page-section active">
 
+            <div class="washi-tape tape-pink"></div>
 
-        <h1>
+            <div class="grid-2">
 
-            SECURIFY
+                <article class="hero-text">
 
-        </h1>
+                    <h1 class="section-title">
 
+                        Hello, I'm
+                        <br>
 
-        <p>
+                        <span class="marker-circle">
+                            Hanum Cahyaning Rezeki
+                        </span>
 
-            Know Your Data. Secure Your Privacy.
+                    </h1>
 
-            <br>
 
-            Analisis format, klasifikasi,
-            dan tingkat risiko data pribadi.
+                    <p style="margin-bottom:15px;">
+                        Siswa Kelas XII — IPA Informatika
+                    </p>
 
-        </p>
 
-    </section>
+                    <p style="margin-bottom:25px;">
 
+                        Selamat datang di
+                        <span class="marker-underline">
+                            paspor digital
+                        </span>
+                        saya!
 
+                        Saya memiliki ketertarikan besar pada dunia
+                        teknologi, kreativitas, dan problem solving.
 
-    <!-- =========================
-         INPUT FORM
-    ========================= -->
+                        Di sini Anda akan menemukan dokumentasi
+                        perjalanan belajar, proyek, dan karya saya
+                        selama di sekolah.
 
-    <section class="checker-card">
+                    </p>
 
 
-        <div class="card-header">
+                    <div style="margin-bottom:25px;">
 
-            <div class="card-icon">
-                🔍
-            </div>
+                        <p style="
+                            font-size:0.9rem;
+                            font-weight:600;
+                            margin-bottom:10px;
+                        ">
+                            My Tools & Skills
+                        </p>
 
 
-            <div>
+                        <span class="sticker">
+                            HTML & CSS
+                        </span>
 
-                <h2>
-                    Data Security Checker
-                </h2>
+                        <span class="sticker">
+                            Jaringan Dasar
+                        </span>
 
-                <p>
-                    Masukkan satu atau beberapa data untuk dianalisis.
-                </p>
+                        <span class="sticker">
+                            C++ / Arduino
+                        </span>
 
-            </div>
+                        <span class="sticker">
+                            Problem Solving
+                        </span>
 
-        </div>
-
-
-
-        <form id="checkForm">
-
-
-            <!-- PHONE -->
-
-            <div class="input-group">
-
-                <label for="phone">
-                    Nomor HP
-                </label>
-
-
-                <div class="input-wrapper">
-
-                    <span class="input-icon">
-                        📱
-                    </span>
-
-
-                    <input
-                        type="text"
-                        id="phone"
-                        placeholder="Contoh: 081234567890"
-                        autocomplete="off"
-                    >
-
-                </div>
-
-            </div>
-
-
-
-            <!-- EMAIL -->
-
-            <div class="input-group">
-
-                <label for="email">
-                    Email
-                </label>
-
-
-                <div class="input-wrapper">
-
-                    <span class="input-icon">
-                        ✉️
-                    </span>
-
-
-                    <input
-                        type="text"
-                        id="email"
-                        placeholder="Contoh: nama@email.com"
-                        autocomplete="off"
-                    >
-
-                </div>
-
-            </div>
-
-
-
-            <!-- IP -->
-
-            <div class="input-group">
-
-                <label for="ip">
-                    IP Address
-                </label>
-
-
-                <div class="input-wrapper">
-
-                    <span class="input-icon">
-                        🌐
-                    </span>
-
-
-                    <input
-                        type="text"
-                        id="ip"
-                        placeholder="Contoh: 192.168.1.1"
-                        autocomplete="off"
-                    >
-
-                </div>
-
-            </div>
-
-
-
-            <button type="submit">
-
-                🔎 &nbsp; ANALISIS DATA
-
-            </button>
-
-
-        </form>
-
-    </section>
-
-
-
-    <!-- =========================
-         RESULT
-    ========================= -->
-
-    <div id="result"></div>
-
-
-
-    <footer>
-
-        SECURIFY © 2026
-
-        <br><br>
-
-        Protect Your Data. Protect Your Privacy.
-
-    </footer>
-
-
-
-    <script>
-
-
-        /* =====================================================
-           REGEX
-        ===================================================== */
-
-
-        /*
-         * NOMOR HP INDONESIA
-         *
-         * Mendukung:
-         * 081234567890
-         * 6281234567890
-         * +6281234567890
-         */
-
-        const phoneRegex =
-            /^(?:\+62|62|0)8[1-9][0-9]{7,10}$/;
-
-
-
-        /*
-         * EMAIL
-         *
-         * Memastikan:
-         * - username valid
-         * - memiliki @
-         * - domain valid
-         * - memiliki ekstensi domain
-         */
-
-        const emailRegex =
-            /^[A-Za-z0-9](?:[A-Za-z0-9._%+-]{0,62}[A-Za-z0-9])?@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z]{2,})+$/;
-
-
-
-        /*
-         * IPv4
-         *
-         * Setiap blok:
-         * 0 - 255
-         */
-
-        const ipRegex =
-            /^(?:(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])$/;
-
-
-
-        /* =====================================================
-           CLASSIFY IP
-        ===================================================== */
-
-        function classifyIP(ip) {
-
-            const parts =
-                ip.split(".").map(Number);
-
-
-            const a = parts[0];
-
-            const b = parts[1];
-
-
-            if (a === 10) {
-
-                return "Private IP";
-
-            }
-
-
-            if (
-                a === 172 &&
-                b >= 16 &&
-                b <= 31
-            ) {
-
-                return "Private IP";
-
-            }
-
-
-            if (
-                a === 192 &&
-                b === 168
-            ) {
-
-                return "Private IP";
-
-            }
-
-
-            if (a === 127) {
-
-                return "Loopback";
-
-            }
-
-
-            if (
-                a >= 224 &&
-                a <= 239
-            ) {
-
-                return "Multicast";
-
-            }
-
-
-            if (a === 0) {
-
-                return "Reserved";
-
-            }
-
-
-            return "Public IP";
-
-        }
-
-
-
-        /* =====================================================
-           CLASSIFY PHONE OPERATOR
-        ===================================================== */
-
-        function classifyPhone(phone) {
-
-
-            const normalized =
-                phone
-                    .replace(/^\+62/, "0")
-                    .replace(/^62/, "0");
-
-
-            const prefix =
-                normalized.substring(0,4);
-
-
-            const operators = {
-
-
-                "0811": "Telkomsel",
-                "0812": "Telkomsel",
-                "0813": "Telkomsel",
-                "0821": "Telkomsel",
-                "0822": "Telkomsel",
-                "0851": "Telkomsel",
-                "0852": "Telkomsel",
-                "0853": "Telkomsel",
-
-
-                "0814": "Indosat",
-                "0815": "Indosat",
-                "0816": "Indosat",
-                "0855": "Indosat",
-                "0856": "Indosat",
-                "0857": "Indosat",
-                "0858": "Indosat",
-
-
-                "0817": "XL",
-                "0818": "XL",
-                "0819": "XL",
-                "0859": "XL",
-                "0877": "XL",
-                "0878": "XL",
-
-
-                "0895": "Tri",
-                "0896": "Tri",
-                "0897": "Tri",
-                "0898": "Tri",
-                "0899": "Tri",
-
-
-                "0881": "Smartfren",
-                "0882": "Smartfren",
-                "0883": "Smartfren",
-                "0884": "Smartfren",
-                "0885": "Smartfren",
-                "0886": "Smartfren",
-                "0887": "Smartfren",
-                "0888": "Smartfren",
-                "0889": "Smartfren"
-
-            };
-
-
-            return operators[prefix]
-                || "Operator tidak teridentifikasi";
-
-        }
-
-
-
-        /* =====================================================
-           RISK CALCULATION
-        ===================================================== */
-
-        function calculateRisk(
-            valid,
-            reasons
-        ) {
-
-
-            if (!valid) {
-
-                return {
-
-                    score: 0,
-
-                    level: "Tidak Valid",
-
-                    css: "invalid",
-
-                    icon: "❌"
-
-                };
-
-            }
-
-
-            let score =
-                reasons.reduce(
-                    (total, item) =>
-                        total + item.score,
-                    0
-                );
-
-
-            /*
-             * Maksimum skor = 100
-             */
-
-            score =
-                Math.min(
-                    score,
-                    100
-                );
-
-
-            let level;
-
-            let css;
-
-            let icon;
-
-
-
-            /*
-             * 0 - 24
-             * RENDAH
-             */
-
-            if (score < 25) {
-
-                level = "Rendah";
-
-                css = "low";
-
-                icon = "✅";
-
-            }
-
-
-            /*
-             * 25 - 49
-             * SEDANG
-             */
-
-            else if (score < 50) {
-
-                level = "Sedang";
-
-                css = "medium";
-
-                icon = "⚠️";
-
-            }
-
-
-            /*
-             * 50 - 74
-             * TINGGI
-             */
-
-            else if (score < 75) {
-
-                level = "Tinggi";
-
-                css = "high";
-
-                icon = "🔥";
-
-            }
-
-
-            /*
-             * 75 - 100
-             * KRITIS
-             */
-
-            else {
-
-                level = "Kritis";
-
-                css = "critical";
-
-                icon = "🔴";
-
-            }
-
-
-            return {
-
-                score,
-
-                level,
-
-                css,
-
-                icon
-
-            };
-
-        }
-
-
-
-        /* =====================================================
-           CREATE RESULT CARD
-        ===================================================== */
-
-        function createResultCard(
-            icon,
-            name,
-            risk,
-            reasons,
-            advice
-        ) {
-
-
-            const analysisHTML =
-                reasons.length > 0
-
-                ?
-
-                reasons
-                    .map(
-                        item =>
-                            `<li>${item.text}</li>`
-                    )
-                    .join("")
-
-                :
-
-                `<li>Data tidak memenuhi format yang didukung.</li>`;
-
-
-            return `
-
-                <div class="result-card">
-
-
-                    <div class="result-card-header">
-
-                        <div class="data-name">
-
-                            ${icon}
-
-                            ${name}
-
-                        </div>
-
-
-                        <span class="risk ${risk.css}">
-
-                            ${risk.icon}
-
-                            ${risk.level}
-
+                        <span class="sticker">
+                            Figma
                         </span>
 
                     </div>
 
 
+                    <div style="
+                        display:flex;
+                        gap:12px;
+                        flex-wrap:wrap;
+                    ">
 
-                    <div class="score-box">
+                        <a href="#karya-proyek"
+                           class="btn btn-sky"
+                           onclick="switchPage('karya-proyek')">
 
-                        <div class="score-number">
+                            Lihat Proyek Saya →
 
-                            ${risk.score}
+                        </a>
+
+
+                        <a href="#kontak"
+                           class="btn btn-pink"
+                           onclick="switchPage('kontak')">
+
+                            Hubungi Saya
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- HERO VISUAL -->
+
+                <aside>
+
+                    <div class="polaroid"
+                         style="transform:rotate(2deg);">
+
+                        <div class="paper-clip">
+                            📎
+                        </div>
+
+
+                        <div class="dummy-illustration">
+
+                            <span>
+                                🎨
+                            </span>
+
+                            <p>
+                                <img src="kucing.jpg">
+                            </p>
 
                         </div>
 
 
-                        <div class="score-label">
-
-                            RISK INDEX / 100
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="analysis-title">
-
-                        Analisis
-
-                    </div>
-
-
-                    <ul class="analysis-list">
-
-                        ${analysisHTML}
-
-                    </ul>
-
-
-
-                    <div class="recommendation">
-
-                        <strong>
-
-                            🛡️ REKOMENDASI
-
-                        </strong>
-
-
-                        <p>
-
-                            ${advice}
-
+                        <p class="caption">
+                            Me, ready to code! 💻
                         </p>
 
                     </div>
 
+                </aside>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             TENTANG
+        ====================================================== -->
+
+        <section id="tentang" class="page-section">
+
+            <div class="washi-tape tape-butter"></div>
+
+            <h2 class="section-title">
+                Passport & Biodata
+                <h1 class="section-title">
+    Hello, I'm
+    <br>
+
+    <span class="marker-circle">
+        Hanum Cahyaning Rezeki  
+    </span>
+</h1>
+
+            </h2>
+
+
+            <div class="grid-2"
+                 style="align-items:start;">
+
+                <article class="module-card">
+
+                    <h3>
+                        Identity Card
+                    </h3>
+
+                    <ul class="identity-list">
+
+                        <li>
+                            <strong>Nama Lengkap:</strong>
+                            Hanum Cahyaning Rezeki
+                        </li>
+
+                        <li>
+                            <strong>Panggilan:</strong>
+                            Hanum
+                        </li>
+
+                        <li>
+                            <strong>TTL:</strong>
+                            Mojokerto, 10 Oktober 2008
+                        </li>
+
+                        <li>
+                            <strong>Sekolah:</strong>
+                            SMAN 2 Mojokerto
+                        </li>
+
+                        <li>
+                            <strong>Kelas:</strong>
+                            XII - IPA Informatika
+                        </li>
+
+                        <li>
+                            <strong>Cita-cita:</strong>
+                            Entrepreuneur / Software Engineer
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+                <article>
+
+                    <h3 style="
+                        font-size:1.4rem;
+                        margin-bottom:18px;
+                    ">
+                        Memory Gallery
+                    </h3>
+
+
+                    <div style="
+                        display:grid;
+                        grid-template-columns:1fr 1fr;
+                        gap:15px;
+                    ">
+
+                        <div class="polaroid"
+                             style="transform:rotate(-2deg);">
+
+                            <img
+                                src="assets/img/aktivitas-1.jpg"
+                                alt="Dokumentasi aktivitas belajar 1"
+                                class="dummy-img"
+                                style="
+                                    height:130px;
+                                    background:#ddd;
+                                "
+                            >
+
+                            <p class="caption">
+                                Lab Jaringan
+                            </p>
+
+                        </div>
+
+
+                        <div class="polaroid"
+                             style="transform:rotate(2deg);">
+
+                            <img
+                                src="assets/img/aktivitas-2.jpg"
+                                alt="Dokumentasi aktivitas belajar 2"
+                                class="dummy-img"
+                                style="
+                                    height:130px;
+                                    background:#ccc;
+                                "
+                            >
+
+                            <p class="caption">
+                                Diskusi Tim
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             JARINGAN
+        ====================================================== -->
+
+        <section id="jaringan" class="page-section">
+
+            <div class="washi-tape tape-matcha"></div>
+
+            <h2 class="section-title">
+                Network Journey
+                <span class="doodle-sparkle">
+                    🌐
+                </span>
+            </h2>
+
+
+            <p style="
+                text-align:center;
+                margin-bottom:30px;
+                color:var(--text-muted);
+                font-size:0.85rem;
+            ">
+                Dokumentasi praktikum dan eksplorasi
+                Jaringan Komputer.
+            </p>
+
+
+            <div class="grid-3">
+
+
+                <!-- CARD 1 -->
+
+                <article class="module-card">
+
+                    <span class="badge-category"
+                          style="background:rgba(244,215,122,.7);">
+                        Routing
+                    </span>
+
+                    <h3>
+                        IP Address & Subnetting
+                    </h3>
+
+
+                    <div class="image-placeholder">
+                        [Screenshot Tugas]
+                    </div>
+
+
+                    <p>
+                        Konfigurasi IP Address statis dan dinamis
+                        (DHCP) pada topologi jaringan lokal.
+                    </p>
+
+
+                    <p style="
+                        margin-top:10px;
+                        font-weight:600;
+                    ">
+                        Tools:
+                        <span style="color:var(--tangerine);">
+                            Cisco Packet Tracer
+                        </span>
+                    </p>
+
+                </article>
+
+
+
+                <!-- CARD 2 -->
+
+                <article class="module-card">
+
+                    <span class="badge-category"
+                          style="
+                            background:rgba(249,139,169,.65);
+                          ">
+                        Hardware
+                    </span>
+
+                    <h3>
+                        Crimping Kabel LAN
+                    </h3>
+
+
+                    <div class="image-placeholder">
+                        [Foto Praktikum]
+                    </div>
+
+
+                    <p>
+                        Membuat kabel jaringan Straight dan
+                        Cross-over menggunakan konektor RJ-45.
+                    </p>
+
+
+                    <p style="
+                        margin-top:10px;
+                        font-weight:600;
+                    ">
+                        Tools:
+                        <span style="color:var(--tangerine);">
+                            Crimping Tool, UTP Cable
+                        </span>
+                    </p>
+
+                </article>
+
+
+
+                <!-- CARD 3 -->
+
+                <article class="module-card"
+                         style="
+                            border-style:dashed;
+                            background:rgba(255,255,255,.25);
+                         ">
+
+                    <h3>
+                        + New Network Task
+                    </h3>
+
+                    <p>
+                        Tempat untuk dokumentasi tugas
+                        jaringan berikutnya.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             IOT
+        ====================================================== -->
+
+        <section id="iot-arduino" class="page-section">
+
+            <div class="washi-tape"
+                 style="
+                    background:var(--sky);
+                    top:20px;
+                    right:30px;
+                    transform:rotate(3deg);
+                 ">
+            </div>
+
+
+            <h2 class="section-title">
+                IoT & Arduino Lab
+                <span class="doodle-sparkle">
+                    🤖
+                </span>
+            </h2>
+
+
+            <div class="grid-3">
+
+
+                <article class="module-card">
+
+                    <span class="badge-category"
+                          style="
+                            background:rgba(214,190,234,.7);
+                          ">
+                        Sensor
+                    </span>
+
+                    <h3>
+                        Smart Temperature
+                    </h3>
+
+
+                    <div class="image-placeholder">
+                        [Skema Wokwi/Fritzing]
+                    </div>
+
+
+                    <p>
+                        Membaca data suhu menggunakan sensor
+                        DHT11 dan menampilkannya pada
+                        Serial Monitor.
+                    </p>
+
+
+                    <a href="#"
+                       class="btn btn-sky"
+                       style="margin-top:15px;">
+
+                        Lihat Kode
+
+                    </a>
+
+                </article>
+
+
+
+                <article class="module-card">
+
+                    <span class="badge-category"
+                          style="
+                            background:rgba(183,201,106,.7);
+                          ">
+                        Actuator
+                    </span>
+
+                    <h3>
+                        Auto Servo Gate
+                    </h3>
+
+
+                    <div class="image-placeholder">
+                        [Foto Rangkaian]
+                    </div>
+
+
+                    <p>
+                        Menggerakkan motor servo berdasarkan
+                        input dari sensor jarak ultrasonik.
+                    </p>
+
+
+                    <a href="#"
+                       class="btn btn-sky"
+                       style="margin-top:15px;">
+
+                        Lihat Kode
+
+                    </a>
+
+                </article>
+
+
+
+                <article class="module-card"
+                         style="
+                            border-style:dashed;
+                            background:rgba(255,255,255,.25);
+                         ">
+
+                    <h3>
+                        + New IoT Project
+                    </h3>
+
+                    <p>
+                        Draft untuk tugas IoT selanjutnya.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PROYEK
+        ====================================================== -->
+
+        <section id="karya-proyek" class="page-section">
+
+            <div class="washi-tape tape-pink"></div>
+
+            <h2 class="section-title">
+                My Creations
+                <span class="doodle-sparkle">
+                    💡
+                </span>
+            </h2>
+
+
+            <div class="grid-2">
+
+
+                <!-- PROJECT 1 -->
+
+                <article class="polaroid">
+
+                    <div class="washi-tape tape-butter"
+                         style="
+                            width:50px;
+                            top:10px;
+                            left:20px;
+                         ">
+                    </div>
+
+
+                    <div class="image-placeholder"
+                         style="height:200px;">
+                        [Screenshot Project 01]
+                    </div>
+
+
+                    <h3 style="
+                        font-size:1.1rem;
+                        margin:15px 0 8px;
+                    ">
+                        Project 01 — Web Sekolah
+                    </h3>
+
+
+                    <p style="
+                        font-size:.8rem;
+                        margin-bottom:5px;
+                    ">
+                        <strong>Kategori:</strong>
+                        Web Development
+                    </p>
+
+
+                    <p style="
+                        font-size:.8rem;
+                        line-height:1.7;
+                        color:var(--text-muted);
+                        margin-bottom:15px;
+                    ">
+                        Membuat halaman landing page untuk
+                        sekolah menggunakan HTML5 & CSS3 Murni.
+                    </p>
+
+
+                    <div style="
+                        display:flex;
+                        gap:10px;
+                        flex-wrap:wrap;
+                    ">
+
+                        <a href="#"
+                           class="btn btn-pink">
+                            View Project
+                        </a>
+
+                        <a href="#"
+                           class="btn">
+                            Repository
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- PROJECT 2 -->
+
+                <article class="polaroid">
+
+                    <div class="washi-tape tape-matcha"
+                         style="
+                            width:50px;
+                            top:10px;
+                            right:20px;
+                         ">
+                    </div>
+
+
+                    <div class="image-placeholder"
+                         style="height:200px;">
+                        [Screenshot Project 02]
+                    </div>
+
+
+                    <h3 style="
+                        font-size:1.1rem;
+                        margin:15px 0 8px;
+                    ">
+                        Project 02 — Kasir App
+                    </h3>
+
+
+                    <p style="
+                        font-size:.8rem;
+                        margin-bottom:5px;
+                    ">
+                        <strong>Kategori:</strong>
+                        Programming
+                    </p>
+
+
+                    <p style="
+                        font-size:.8rem;
+                        line-height:1.7;
+                        color:var(--text-muted);
+                        margin-bottom:15px;
+                    ">
+                        Aplikasi kasir sederhana berbasis console
+                        menggunakan bahasa pemrograman C++.
+                    </p>
+
+
+                    <a href="#"
+                       class="btn btn-pink">
+
+                        View Project
+
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             KONTAK
+        ====================================================== -->
+
+        <section id="kontak" class="page-section">
+
+            <div class="washi-tape"
+                 style="
+                    background:var(--tangerine);
+                    top:20px;
+                    right:30px;
+                    transform:rotate(3deg);
+                 ">
+            </div>
+
+
+            <h2 class="section-title">
+                Drop a Note!
+                <span class="doodle-sparkle">
+                    📬
+                </span>
+            </h2>
+
+
+            <div class="grid-2">
+
+
+                <!-- FORM -->
+
+                <div class="contact-form">
+
+                    <form
+                        action="#"
+                        method="POST"
+                        onsubmit="
+                            event.preventDefault();
+                            alert(
+                                'Ini adalah demonstrasi layout UI. Form belum terkoneksi ke backend.'
+                            );
+                        "
+                    >
+
+                        <div class="form-group">
+
+                            <label for="nama">
+                                Nama Pengirim
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nama"
+                                name="nama"
+                                placeholder="Tulis namamu..."
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                Alamat Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="email@contoh.com"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="kategori">
+                                Kategori Pesan
+                            </label>
+
+                            <select
+                                id="kategori"
+                                name="kategori"
+                            >
+
+                                <option value="pertanyaan">
+                                    Pertanyaan
+                                </option>
+
+                                <option value="kolaborasi">
+                                    Kolaborasi
+                                </option>
+
+                                <option value="saran">
+                                    Saran
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="pesan">
+                                Pesan
+                            </label>
+
+                            <textarea
+                                id="pesan"
+                                name="pesan"
+                                placeholder="Halo, saya ingin bertanya tentang..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-butter"
+                            style="width:100%;"
+                        >
+
+                            Kirim Pesan →
+
+                        </button>
+
+                    </form>
 
                 </div>
 
-            `;
+
+
+                <!-- CONTACT INFO -->
+
+                <article style="padding:15px;">
+
+                    <h3 style="
+                        font-size:1.6rem;
+                        margin-bottom:12px;
+                    ">
+                        Keep in Touch!
+                    </h3>
+
+
+                    <p style="
+                        font-size:.85rem;
+                        line-height:1.8;
+                        margin-bottom:15px;
+                    ">
+
+                        Punya ide seru, pertanyaan tugas,
+                        atau tawaran kolaborasi?
+
+                        Jangan ragu untuk menghubungi saya!
+
+                    </p>
+
+
+                    <ul style="
+                        list-style:none;
+                        line-height:2.5;
+                        font-size:.85rem;
+                        font-weight:600;
+                    ">
+
+                        <li>
+                            📍 Mojokerto, Jawa Timur
+                        </li>
+
+                        <li>
+                            ✉️ hanumcahyaning@gmail.com
+                        </li>
+
+                        <li>
+                            🐙 github.com/hanumcahyaning-sys
+                        </li>
+
+                        <li>
+                            📸 @_hanumc
+                        </li>
+
+                    </ul>
+
+
+                    <div style="margin-top:20px;">
+
+                        <span class="sticker">
+                            APPROVED 👍
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <footer>
+
+            <p>
+                © 2026 Hanum.
+                All Rights Reserved.
+            </p>
+
+            <p style="margin-top:7px;">
+
+                <a href="#">
+                    github.com/hanumcahyaning-sys
+                </a>
+
+                &nbsp;•&nbsp;
+
+                <a href="#">
+                    @_hanumc
+                </a>
+
+                &nbsp;•&nbsp;
+
+                <a href="#">
+                    hanumcahyaning@gmail.com
+                </a>
+
+            </p>
+
+        </footer>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+        function switchPage(pageId, clickedLink = null) {
+
+            /*
+             * Sembunyikan semua section
+             */
+            const sections =
+                document.querySelectorAll('.page-section');
+
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+
+            /*
+             * Hapus active dari navigation
+             */
+            const navLinks =
+                document.querySelectorAll('#nav-menu a');
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+
+            /*
+             * Tampilkan section yang dipilih
+             */
+            const target =
+                document.getElementById(pageId);
+
+            if (target) {
+                target.classList.add('active');
+            }
+
+
+            /*
+             * Active navigation
+             */
+            if (clickedLink) {
+
+                clickedLink.classList.add('active');
+
+            } else {
+
+                const matchingLink =
+                    document.querySelector(
+                        `#nav-menu a[href="#${pageId}"]`
+                    );
+
+                if (matchingLink) {
+                    matchingLink.classList.add('active');
+                }
+
+            }
+
+
+            /*
+             * Kembali ke posisi atas
+             */
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
 
         }
 
 
+        /*
+         * Support ketika user membuka URL:
+         * index.html#tentang
+         */
+        window.addEventListener('DOMContentLoaded', () => {
 
-        /* =====================================================
-           FORM SUBMIT
-        ===================================================== */
+            const hash =
+                window.location.hash.replace('#', '');
 
-        document
-            .getElementById("checkForm")
-            .addEventListener(
-                "submit",
-                function(event) {
+            if (hash) {
 
+                const target =
+                    document.getElementById(hash);
 
-                    event.preventDefault();
-
-
-
-                    const phone =
-                        document
-                            .getElementById("phone")
-                            .value
-                            .trim();
-
-
-                    const email =
-                        document
-                            .getElementById("email")
-                            .value
-                            .trim();
-
-
-                    const ip =
-                        document
-                            .getElementById("ip")
-                            .value
-                            .trim();
-
-
-
-                    let cards = [];
-
-
-
-                    /* =================================================
-                       PHONE SCREENING
-                    ================================================= */
-
-                    if (phone) {
-
-
-                        const valid =
-                            phoneRegex.test(phone);
-
-
-                        let reasons = [];
-
-
-                        if (valid) {
-
-
-                            const operator =
-                                classifyPhone(phone);
-
-
-                            /*
-                             * Format valid
-                             */
-
-                            reasons.push({
-
-                                text:
-                                    "Format nomor Indonesia valid.",
-
-                                score: 0
-
-                            });
-
-
-                            /*
-                             * Operator
-                             */
-
-                            reasons.push({
-
-                                text:
-                                    `Operator terdeteksi: ${operator}.`,
-
-                                score: 5
-
-                            });
-
-
-                            /*
-                             * Identifier pribadi
-                             */
-
-                            reasons.push({
-
-                                text:
-                                    "Nomor HP merupakan identifier pribadi.",
-
-                                score: 15
-
-                            });
-
-
-                            /*
-                             * Digunakan untuk akun
-                             */
-
-                            reasons.push({
-
-                                text:
-                                    "Nomor HP dapat digunakan untuk verifikasi atau pemulihan akun.",
-
-                                score: 15
-
-                            });
-
-
-                            /*
-                             * Risiko penyalahgunaan
-                             */
-
-                            reasons.push({
-
-                                text:
-                                    "Nomor yang terekspos dapat meningkatkan risiko spam, phishing, atau social engineering.",
-
-                                score: 20
-
-                            });
-
-                        }
-
-
-
-                        const risk =
-                            calculateRisk(
-                                valid,
-                                reasons
-                            );
-
-
-
-                        const advice =
-                            valid
-
-                            ?
-
-                            "Hindari mempublikasikan nomor HP secara terbuka. Gunakan nomor secara selektif dan aktifkan fitur keamanan akun yang tersedia."
-
-                            :
-
-                            "Periksa kembali kode negara, prefix operator, dan panjang nomor HP.";
-
-
-
-                        cards.push(
-
-                            createResultCard(
-
-                                "📱",
-
-                                "Nomor HP",
-
-                                risk,
-
-                                reasons,
-
-                                advice
-
-                            )
-
-                        );
-
-                    }
-
-
-
-                    /* =================================================
-                       EMAIL SCREENING
-                    ================================================= */
-
-                    if (email) {
-
-
-                        const valid =
-                            emailRegex.test(email);
-
-
-                        let reasons = [];
-
-
-                        if (valid) {
-
-
-                            const domain =
-                                email
-                                    .split("@")[1]
-                                    .toLowerCase();
-
-
-                            reasons.push({
-
-                                text:
-                                    "Struktur alamat email valid.",
-
-                                score: 0
-
-                            });
-
-
-                            reasons.push({
-
-                                text:
-                                    `Domain terdeteksi: ${domain}.`,
-
-                                score: 5
-
-                            });
-
-
-                            reasons.push({
-
-                                text:
-                                    "Email merupakan identifier pribadi.",
-
-                                score: 15
-
-                            });
-
-
-                            reasons.push({
-
-                                text:
-                                    "Alamat email sering digunakan sebagai identitas login atau pemulihan akun.",
-
-                                score: 15
-
-                            });
-
-
-                            reasons.push({
-
-                                text:
-                                    "Email yang terekspos dapat menjadi target spam, phishing, atau social engineering.",
-
-                                score: 20
-
-                            });
-
-                        }
-
-
-
-                        const risk =
-                            calculateRisk(
-                                valid,
-                                reasons
-                            );
-
-
-
-                        const advice =
-                            valid
-
-                            ?
-
-                            "Gunakan password unik, aktifkan autentikasi dua faktor, dan hindari menggunakan email utama pada layanan yang tidak terpercaya."
-
-                            :
-
-                            "Pastikan email memiliki username, simbol @, domain, dan ekstensi domain yang valid.";
-
-
-
-                        cards.push(
-
-                            createResultCard(
-
-                                "✉️",
-
-                                "Email",
-
-                                risk,
-
-                                reasons,
-
-                                advice
-
-                            )
-
-                        );
-
-                    }
-
-
-
-                    /* =================================================
-                       IP SCREENING
-                    ================================================= */
-
-                    if (ip) {
-
-
-                        const valid =
-                            ipRegex.test(ip);
-
-
-                        let reasons = [];
-
-
-                        if (valid) {
-
-
-                            const type =
-                                classifyIP(ip);
-
-
-                            reasons.push({
-
-                                text:
-                                    "Format IPv4 valid.",
-
-                                score: 0
-
-                            });
-
-
-                            reasons.push({
-
-                                text:
-                                    `Kategori IP: ${type}.`,
-
-                                score: 5
-
-                            });
-
-
-
-                            /*
-                             * PUBLIC IP
-                             */
-
-                            if (
-                                type === "Public IP"
-                            ) {
-
-
-                                reasons.push({
-
-                                    text:
-                                        "Public IP dapat terlihat oleh layanan atau server yang diakses melalui internet.",
-
-                                    score: 25
-
-                                });
-
-
-                                reasons.push({
-
-                                    text:
-                                        "Informasi IP dapat memberikan petunjuk mengenai koneksi jaringan.",
-
-                                    score: 20
-
-                                });
-
-
-                                reasons.push({
-
-                                    text:
-                                        "Public IP dapat menjadi bagian dari informasi yang digunakan untuk profiling jaringan.",
-
-                                    score: 15
-
-                                });
-
-                            }
-
-
-
-                            /*
-                             * PRIVATE IP
-                             */
-
-                            else if (
-                                type === "Private IP"
-                            ) {
-
-
-                                reasons.push({
-
-                                    text:
-                                        "Private IP digunakan dalam jaringan lokal dan tidak langsung dirutekan di internet.",
-
-                                    score: 5
-
-                                });
-
-                            }
-
-
-
-                            /*
-                             * LOOPBACK
-                             */
-
-                            else if (
-                                type === "Loopback"
-                            ) {
-
-
-                                reasons.push({
-
-                                    text:
-                                        "Alamat loopback digunakan untuk komunikasi internal perangkat.",
-
-                                    score: 0
-
-                                });
-
-                            }
-
-                        }
-
-
-
-                        const risk =
-                            calculateRisk(
-                                valid,
-                                reasons
-                            );
-
-
-
-                        const advice =
-                            valid
-
-                            ?
-
-                            "Hindari membagikan public IP secara terbuka. Gunakan jaringan terpercaya dan perhatikan konfigurasi keamanan jaringan."
-
-                            :
-
-                            "Gunakan format IPv4 yang benar, misalnya 192.168.1.1.";
-
-
-
-                        cards.push(
-
-                            createResultCard(
-
-                                "🌐",
-
-                                "IP Address",
-
-                                risk,
-
-                                reasons,
-
-                                advice
-
-                            )
-
-                        );
-
-                    }
-
-
-
-                    /* =================================================
-                       DISPLAY
-                    ================================================= */
-
-                    if (
-                        cards.length === 0
-                    ) {
-
-
-                        document
-                            .getElementById("result")
-                            .innerHTML = `
-
-                                <div class="info-box">
-
-                                    ⚠️
-
-                                    Masukkan minimal satu data
-                                    untuk melakukan screening.
-
-                                </div>
-
-                            `;
-
-
-                        return;
-
-                    }
-
-
-
-                    document
-                        .getElementById("result")
-                        .innerHTML = `
-
-                            <div class="result-header">
-
-                                <h2>
-
-                                    Security Analysis
-
-                                </h2>
-
-
-                                <p>
-
-                                    Setiap data dianalisis
-                                    secara independen berdasarkan
-                                    validitas, klasifikasi,
-                                    dan indikator risiko.
-
-                                </p>
-
-                            </div>
-
-
-
-                            <div class="result-grid">
-
-                                ${cards.join("")}
-
-                            </div>
-
-
-
-                            <div class="info-box">
-
-                                <strong>
-                                    ℹ️ Tentang Risk Index
-                                </strong>
-
-                                <br><br>
-
-                                <strong>
-                                    0–24
-                                </strong>
-                                → Risiko Rendah
-
-                                &nbsp; | &nbsp;
-
-                                <strong>
-                                    25–49
-                                </strong>
-                                → Risiko Sedang
-
-                                &nbsp; | &nbsp;
-
-                                <strong>
-                                    50–74
-                                </strong>
-                                → Risiko Tinggi
-
-                                &nbsp; | &nbsp;
-
-                                <strong>
-                                    75–100
-                                </strong>
-                                → Risiko Kritis
-
-                                <br><br>
-
-                                Risk Index merupakan
-                                penilaian berbasis aturan
-                                yang dibuat untuk melakukan
-                                assessment terhadap karakteristik
-                                data. Nilai ini tidak membuktikan
-                                bahwa data benar-benar terdapat
-                                dalam database kebocoran.
-
-                            </div>
-
-                        `;
-
-
+                if (target) {
+                    switchPage(hash);
                 }
-            );
+
+            }
+
+        });
+
+
+        /*
+         * Update hash ketika navigasi
+         */
+        document.querySelectorAll('#nav-menu a')
+            .forEach(link => {
+
+                link.addEventListener('click', () => {
+
+                    const target =
+                        link.getAttribute('href');
+
+                    if (target && target.startsWith('#')) {
+
+                        history.replaceState(
+                            null,
+                            '',
+                            target
+                        );
+
+                    }
+
+                });
+
+            });
 
     </script>
 
-
 </body>
-
 </html>
